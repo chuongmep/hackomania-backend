@@ -1,12 +1,11 @@
 from http.server import BaseHTTPRequestHandler
 from os.path import dirname, abspath, join
 dir = dirname(abspath(__file__))
-
-
 import os
 from flask import Flask, request, jsonify, make_response
 from pymongo import MongoClient
 from bson.objectid import ObjectId
+from OpenAIImage import OpenAIImage
 import json
 
 app = Flask(__name__)
@@ -50,6 +49,15 @@ def add_device():
 
     return response
 
+@app.route("api/get-content-image", methods=['POST'])
+def get_content_image():
+    oepnaimage = OpenAIImage()
+    # add url to get image
+    image_path = request.json.get('image_path')
+    category = request.json.get('category')
+    response = oepnaimage.post_content_from_image(image_path, category)
+    response.headers['Content-Type'] = 'application/json'
+    return response
 
 @app.route('/user', methods=['GET'])
 def get_user():
@@ -73,6 +81,10 @@ def get_green_energy_facts():
     response.headers['Content-Type'] = 'application/json'
 
     return response
+
+@app.route('/api/openai', methods=['GET'])
+def openai():
+    return "Chuong is a great guy!!!1"
  
 # class handler(BaseHTTPRequestHandler):
  
