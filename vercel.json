@@ -34,6 +34,10 @@
     {
       "src": "/api/openai_1",
       "dest": "api/index.py"
+    },
+    {
+      "src": "/api/graph",
+      "dest": "api/index.py"
     }
   
   ]

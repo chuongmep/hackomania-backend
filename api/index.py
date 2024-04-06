@@ -1,5 +1,11 @@
 from http.server import BaseHTTPRequestHandler
+import io
 from os.path import dirname, abspath, join
+import matplotlib
+matplotlib.use('Agg')  # Use a non-interactive backend for Matplotlib
+import matplotlib.pyplot as plt
+import base64
+
 
 from api.OpenAIImage import OpenAIImage
 dir = dirname(abspath(__file__))
@@ -27,7 +33,7 @@ def create_api():
     # Insert the data into the new collection
     print("XB", collection.insert_one(data))
 
-    return jsonify({'message': 'API created successfully'}), 201
+    return jsonify(data), 201
 
 
 @app.route('/api/add-device', methods=['POST'])
@@ -97,16 +103,41 @@ def get_green_energy_facts():
 def openai():
     return "Chuong is a great guy!!!1"
  
-# class handler(BaseHTTPRequestHandler):
- 
-#     def do_GET(self):
-#         self.send_response(200)
-#         self.send_header('Content-type','text/plain')
-#         self.end_headers()
-#         with open(join(dir, '..', 'data', 'user.json'), 'r') as file:
-#           for line in file:
-#             self.wfile.write(line.encode())
-#         return
+@app.route('/api/graph', methods=['POST'])
+def get_user_graph():
+    print(request.json)
+    user_id = request.json.get('user_id')
+    # Connect to MongoDB
+    # Fetch data for the specified user
+    user_data = db['users'].find_one({'user_id': user_id})
+
+    if user_data:
+        # Generate the graph using Matplotlib
+        # Assume the data is in the format: [actual_value, projected_value]
+        data = user_data['daily_projected_bill']
+        print("ABCD", data)
+        # Generate the graph using Matplotlib
+        plt.figure(figsize=(8, 6))
+        plt.plot([data *1.25,  data], data, marker='o')
+        plt.title(f"Activity Data for User {user_id}")
+        plt.xlabel('Data Point')
+        plt.ylabel('Value ($)')
+        plt.xticks([1, 2], ['Actual', 'Projected'])
+
+        # Save the graph to a bytes buffer
+        buf = io.BytesIO()
+        plt.savefig(buf, format='png')
+        plt.close()
+        buf.seek(0)
+
+        # Convert the image to a base64-encoded string
+        graph_data = base64.b64encode(buf.getvalue()).decode('utf-8')
+
+        # Return the graph as part of the API response
+        return jsonify({'graph': graph_data})
+    else:
+        return jsonify({'error': f'User with ID {user_id} not found.'}), 404
+
 
 
 
