@@ -58,7 +58,7 @@ def add_device():
     data_list = request.json.get('devices')
     print("ABCD", request.json)
     users = db['users']
-    user_id = data.get('user_id')
+    user_id = request.json.get('user_id')
     # if user_if not found, create new user
     if not users.find_one({'user_id': user_id}):
         users.insert_one({'user_id': user_id, 'devices': []})
