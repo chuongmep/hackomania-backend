@@ -1,24 +1,22 @@
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fvercel%2Fexamples%2Ftree%2Fmain%2Fpython%2Fhello-world&demo-title=Python%20Hello%20World&demo-description=Use%20Python%20on%20Vercel%20with%20Serverless%20Functions%20using%20the%20Python%20Runtime.&demo-url=https%3A%2F%2Fpython-hello-world.vercel.app%2F&demo-image=https://assets.vercel.com/image/upload/v1669994600/random/python.png)
+# Hackomani - GreenHome Team 
 
-# Python Hello World
+## Description
 
-This example shows how to use Python on Vercel with Serverless Functions using the [Python Runtime](https://vercel.com/docs/concepts/functions/serverless-functions/runtimes/python).
+GreenHome helps residents optimize energy consumption through smart form, insightful dashboard, and personalized guidance
 
-## Demo
+Problem Statement:
 
-https://python-hello-world.vercel.app/
+- User doesn’t know how to optimize their energy consumption per device basis - > Users do not know the energy consumption from their device 
 
-## Running Locally
+- Users lack visibility into the overall status in their household.
 
-```bash
-npm i -g vercel
-vercel dev
-```
+- User lack of knowledge on the life span of the device they purchase. 
+Older devices may be consuming more energy, contributing to inefficiency.
+Users do not recognize the importance of purchasing energy-efficient, environmentally friendly devices.
 
-Your Python API is now available at `http://localhost:3000/api`.
 
-## One-Click Deploy
+## Resources 
 
-Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme&utm_campaign=vercel-examples):
+- [Presentation](https://docs.google.com/presentation/d/1z_hEcZwHXhuwq4ZuZQlwpGKfXta3pEbbmNFobI161io/edit?usp=sharing)
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fvercel%2Fexamples%2Ftree%2Fmain%2Fpython%2Fhello-world&demo-title=Python%20Hello%20World&demo-description=Use%20Python%20on%20Vercel%20with%20Serverless%20Functions%20using%20the%20Python%20Runtime.&demo-url=https%3A%2F%2Fpython-hello-world.vercel.app%2F&demo-image=https://assets.vercel.com/image/upload/v1669994600/random/python.png)
+- 
