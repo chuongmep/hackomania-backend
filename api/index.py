@@ -56,6 +56,8 @@ def get_user_mongo():
 @app.route('/api/add-device', methods=['POST'])
 def add_device():
     data_list = request.json.get('devices')
+    if data_list is None:
+        return jsonify({'error': 'No devices found in the request.'}), 400
     print("ABCD", request.json)
     users = db['users']
     user_id = request.json.get('user_id')
