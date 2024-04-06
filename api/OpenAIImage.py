@@ -31,16 +31,17 @@ class OpenAIImage():
                 return item["text"]
         return None
     def post_content_from_image(image_path,category):
+        base64_image = self.encode_image(image_path)
+        return self.post_content_from_bytes(base64_image,category)
+        
+    def post_content_from_bytes(base64_image,category):
         prompt_path = "../data/api/prompt.json"
         prompt_data = self.read_json(prompt_path)
-# Example usage
         selected_text = self.get_text_by_category(prompt_data, category)
-
         headers = {
         "Content-Type": "application/json",
         "Authorization": f"Bearer {self.api_key}"
         }
-        base64_image = self.encode_image(image_path)
         payload = {
         "model": "gpt-4-vision-preview",
         "messages": [
@@ -62,8 +63,7 @@ class OpenAIImage():
         ],
         "max_tokens": 300
         }
-
         response = requests.post("https://api.openai.com/v1/chat/completions", headers=headers, json=payload)
+        return response.json()['choices'][0]['message']['content']
+    
 
-        # print(response.json())
-        response.json()['choices'][0]['message']['content']

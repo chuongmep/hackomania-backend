@@ -58,6 +58,16 @@ def get_content_image():
     response = oepnaimage.post_content_from_image(image_path, category)
     response.headers['Content-Type'] = 'application/json'
     return response
+# get content image from bytes 
+@app.route("api/get-content-image-bytes", methods=['POST'])
+def get_content_image_by_bytes():
+    oepnaimage = OpenAIImage()
+    # add bytes image to body
+    base64_image = request.json.get('base64_image')
+    category = request.json.get('category')
+    response = oepnaimage.post_content_from_bytes(base64_image, category)
+    response.headers['Content-Type'] = 'application/json'
+    return response
 
 @app.route('/user', methods=['GET'])
 def get_user():

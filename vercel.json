@@ -24,8 +24,16 @@
       "dest": "api/index.py"
     },
     {
+      "src": "/api/get-content-image",
+      "dest": "api/index.py"
+    },
+    {
+      "src": "/api/get-content-image-bytes",
+      "dest": "api/index.py"
+    },
+    {
       "src": "/api/openai",
-      "dest": "api/openai_1.py"
+      "dest": "api/index.py"
     }
   
   ]
