@@ -1,0 +1,14 @@
+{
+    "id": 123456,
+    "username": "johndoe",
+    "email": "johndoe@example.com",
+    "age": 30,
+    "gender": "male",
+    "location": {
+      "city": "New York",
+      "country": "USA"
+    },
+    "interests": ["hiking", "reading", "traveling"],
+    "is_active": true
+  }
+  
