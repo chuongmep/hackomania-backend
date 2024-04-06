@@ -88,6 +88,7 @@ def get_content_image():
     stream = file_storage.stream.read()
     base64_image = base64.b64encode(stream)
     response = oepnaimage.post_content_from_bytes(base64_image, category)
+    print("ABCD", response)
     start = response.find('json') + 5
     end = response.rfind('}') + 1
     json_data = response[start:end]
@@ -193,7 +194,7 @@ def get_user_anomaly_graph():
     plt.ylabel('kWh', fontsize=16)
 
     # Setting the X-axis ticks and labels
-    plt.xticks(x_ticks, x_labels, rotation=270, fontsize=7)
+    plt.xticks(x_ticks, x_labels, rotation=90, fontsize=7)
     plt.ylim(0, max(data))
     # Save the graph to a bytes buffer
     buf = io.BytesIO()
