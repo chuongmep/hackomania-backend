@@ -55,7 +55,7 @@ def get_user_mongo():
 
 @app.route('/api/add-device', methods=['POST'])
 def add_device():
-    data = request.json
+    data = request.json.get('device')
     print("ABCD", request.json)
     users = db['users']
     user_id = data.get('user_id')
@@ -65,10 +65,18 @@ def add_device():
     print("XYY", user_id)
     user = users.find_one({'user_id': user_id})
     _id = user.get('_id')
-    user.get('devices').append(request.json.get('device'))
+    for device in user['devices']:
+        if device['name'] == data['name'] and device['status'] == True:
+            device['kwh'] = data['kwh']
+            device['status'] = True
+            device['hours'] = data['hours']
+            user['number_of_devices'] += 1
+            user['daily_projected_bill'] += user['cost_per_kwh'] * data['hours'] * data['kwh']
     users.update_one({'_id': _id}, {'$set': user})
     user['_id'] = str(user['_id'])
-    
+    for device in user['devices']:
+        if device['name'] == data['name']:
+            device['kwh'] = data
     print("XAA", user)
 
     response = make_response(user)
