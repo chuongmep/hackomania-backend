@@ -6,6 +6,7 @@ dir = dirname(abspath(__file__))
 import os
 from flask import Flask, request, jsonify, make_response
 from pymongo import MongoClient
+from bson.objectid import ObjectId
 import json
 
 app = Flask(__name__)
@@ -27,6 +28,27 @@ def create_api():
     print("XB", collection.insert_one(data))
 
     return jsonify({'message': 'API created successfully'}), 201
+
+
+@app.route('/api/add-device', methods=['POST'])
+def add_device():
+    data = request.json
+    print("ABCD", request.json)
+    users = db['users']
+    user_id = data.get('user_id')
+    print("XYY", user_id)
+    user = users.find_one({'user_id': user_id})
+    _id = user.get('_id')
+    user.get('devices').append(request.json.get('device'))
+    users.update_one({'_id': _id}, {'$set': user})
+    user['_id'] = str(user['_id'])
+    
+    print("XAA", user)
+
+    response = make_response(user)
+    response.headers['Content-Type'] = 'application/json'
+
+    return response
 
 
 @app.route('/user', methods=['GET'])

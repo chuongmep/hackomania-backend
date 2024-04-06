@@ -18,6 +18,11 @@
     {
       "src": "/api/create",
       "dest": "api/index.py"
+    },
+    {
+      "src": "/api/add-device",
+      "dest": "api/index.py"
     }
+  
   ]
 }
