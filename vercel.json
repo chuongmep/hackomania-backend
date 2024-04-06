@@ -32,7 +32,7 @@
       "dest": "api/index.py"
     },
     {
-      "src": "/api/openai",
+      "src": "/api/openai_1",
       "dest": "api/index.py"
     }
   

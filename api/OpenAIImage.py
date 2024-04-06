@@ -1,7 +1,7 @@
 import base64
 import requests
 import json
-class OpenAIImage():
+class OpenAIImage:
     def __init__(self):
         self.api_key = "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"
 
