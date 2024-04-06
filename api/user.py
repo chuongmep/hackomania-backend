@@ -1,4 +1,3 @@
- 
 from http.server import BaseHTTPRequestHandler
 from os.path import dirname, abspath, join
 dir = dirname(abspath(__file__))
