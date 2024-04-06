@@ -5,6 +5,7 @@ name = "pypi"
  
 [packages]
 flask = "*"
+sanic==19.6.0
  
 [requires]
 python_version = "3.9"
