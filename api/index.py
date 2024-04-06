@@ -2,7 +2,7 @@ from http.server import BaseHTTPRequestHandler
 import io
 from os.path import dirname, abspath, join
 import matplotlib
-matplotlib.use('Agg')  # Use a non-interactive backend for Matplotlib
+# matplotlib.use('Agg')  # Use a non-interactive backend for Matplotlib
 import matplotlib.pyplot as plt
 import base64
 
@@ -127,24 +127,25 @@ def get_user_graph():
         # Generate the graph using Matplotlib
         # Assume the data is in the format: [actual_value, projected_value]
         data = user_data['daily_projected_bill']
+        data = [data * 1.25, data]
         print("ABCD", data)
         # Generate the graph using Matplotlib
         plt.figure(figsize=(8, 6))
-        plt.plot([data *1.25,  data], data, marker='o')
-        plt.title(f"Activity Data for User {user_id}")
-        plt.xlabel('Data Point')
-        plt.ylabel('Value ($)')
-        plt.xticks([1, 2], ['Actual', 'Projected'])
+        plt.bar([0, 1], data, color=['#4CAF50', '#E91E63'], width=0.4, edgecolor='#607D8B')
+        plt.title(f"Daily Bill Projection", fontsize=16, fontweight='bold', color='#333333')
+        plt.xlabel('', fontsize=14, color='#333333')
+        plt.ylabel('Value ($)', fontsize=14, color='#333333')
+        plt.xticks([0, 1], ['Actual', 'Projected'],  fontsize=12, color='#333333')
 
         # Save the graph to a bytes buffer
         buf = io.BytesIO()
         plt.savefig(buf, format='png')
+        plt.show()
         plt.close()
         buf.seek(0)
 
         # Convert the image to a base64-encoded string
         graph_data = base64.b64encode(buf.getvalue()).decode('utf-8')
-
         # Return the graph as part of the API response
         return jsonify({'graph': graph_data})
     else:
