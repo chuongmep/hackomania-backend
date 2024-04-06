@@ -37,3 +37,4 @@ Users do not recognize the importance of purchasing energy-efficient, environmen
 - https://vercel.com/docs/functions/runtimes/python#python-version
 - https://www.mongodb.com/docs/cloud-manager/tutorial/connect-to-mongodb/
 - https://mobbin.com/search/ios/screens?filter=screenPatterns.Quiz
+- https://platform.openai.com/docs/guides/vision
