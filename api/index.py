@@ -2,7 +2,7 @@ from http.server import BaseHTTPRequestHandler
 import io
 from os.path import dirname, abspath, join
 import matplotlib
-# matplotlib.use('Agg')  # Use a non-interactive backend for Matplotlib
+matplotlib.use('Agg')  # Use a non-interactive backend for Matplotlib
 import matplotlib.pyplot as plt
 import base64
 import certifi
@@ -157,7 +157,6 @@ def get_user_graph():
         # Save the graph to a bytes buffer
         buf = io.BytesIO()
         plt.savefig(buf, format='png')
-        plt.show()
         plt.close()
         buf.seek(0)
 
