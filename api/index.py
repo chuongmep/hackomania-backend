@@ -45,7 +45,7 @@ def get_user_mongo():
     users = db['users']
     user_id = data.get('user_id')
     print("XYY", user_id)
-    user = users.find_one({'    user_id': user_id})
+    user = users.find_one({'user_id': user_id})
     user['_id'] = str(user['_id'])
     # Insert the data into the new collection
     print("XB", user)
