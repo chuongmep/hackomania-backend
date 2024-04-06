@@ -7,9 +7,8 @@ class OpenAIImage:
         self.api_key = "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"
 
     @staticmethod
-    def encode_image(image_path):
-        with open(image_path, "rb") as image_file:
-            return base64.b64encode(image_file.read()).decode('utf-8')
+    def encode_image(image):
+        base64.b64encode(image).decode('utf-8')
 
     
     @staticmethod
@@ -37,8 +36,8 @@ class OpenAIImage:
                 return item["text"]
         return None
 
-    def post_content_from_image(self, image_path, category):
-        base64_image = OpenAIImage.encode_image(image_path)
+    def post_content_from_image(self, image, category):
+        base64_image = OpenAIImage.encode_image(image)
         return self.post_content_from_bytes(base64_image, category)
         
     def post_content_from_bytes(self, base64_image, category):
@@ -65,7 +64,7 @@ class OpenAIImage:
                         {
                             "type": "image_url",
                             "image_url": {
-                                "url": f"data:image/jpeg;base64,{base64_image}"
+                                "url": f"data:image/jpeg;base64,{base64_image.decode('utf-8')}"
                             }
                         }
                     ]

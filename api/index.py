@@ -60,17 +60,24 @@ def add_device():
 def get_content_image():
     oepnaimage = OpenAIImage()
     # add url to get image
-    image_path = request.json.get('image_path')
-    category = request.json.get('category')
-    response = oepnaimage.post_content_from_image(image_path, category)
+    file_storage = request.files.get('image_path')
+    # The line `print("CHUONG", image_path.stream.read())` is reading the content of the file uploaded
+    # as part of the request and printing it along with the string "CHUONG". This is useful for
+    # debugging purposes to see the content of the file being processed in the `get_content_image`
+    # endpoint.
+    # print("CHUONG", image_path.stream.read())
+    category = request.headers['category']
+    stream = file_storage.stream.read()
+    base64_image = base64.b64encode(stream)
+    response = oepnaimage.post_content_from_bytes(base64_image, category)
     return response
 # get content image from bytes 
 @app.route("/api/get-content-image-bytes", methods=['POST'])
 def get_content_image_by_bytes():
     oepnaimage = OpenAIImage()
     # add bytes image to body
-    base64_image = request.json.get('base64_image')
-    category = request.json.get('category')
+    base64_image = request.files['base64_image']
+    category = request.headers['category']
     response = oepnaimage.post_content_from_bytes(base64_image, category)
     response.headers['Content-Type'] = 'application/json'
     return response
