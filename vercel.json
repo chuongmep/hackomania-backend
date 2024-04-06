@@ -1,3 +1,23 @@
 {
-  "redirects": [{ "source": "/", "destination": "/api" }]
+  "version": 2,
+  "builds": [
+    {
+      "src": "api/index.py",
+      "use": "@vercel/python"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/api/green-energy-fact",
+      "dest": "api/index.py"
+    },
+    {
+      "src": "/user",
+      "dest": "api/index.py"
+    },
+    {
+      "src": "/api/create",
+      "dest": "api/index.py"
+    }
+  ]
 }
