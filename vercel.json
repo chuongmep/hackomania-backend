@@ -22,6 +22,10 @@
     {
       "src": "/api/add-device",
       "dest": "api/index.py"
+    },
+    {
+      "src": "/api/openai",
+      "dest": "api/openai_1.py"
     }
   
   ]
