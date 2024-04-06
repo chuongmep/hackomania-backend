@@ -2,7 +2,7 @@ from http.server import BaseHTTPRequestHandler
 import io
 from os.path import dirname, abspath, join
 import matplotlib
-# matplotlib.use('Agg')  # Use a non-interactive backend for Matplotlib
+matplotlib.use('Agg')  # Use a non-interactive backend for Matplotlib
 import matplotlib.pyplot as plt
 import base64
 import certifi
@@ -194,9 +194,16 @@ def get_user_anomaly_graph():
     # Setting the X-axis ticks and labels
     plt.xticks(x_ticks, x_labels, rotation=270, fontsize=7)
     plt.ylim(0, max(data))
+    # Save the graph to a bytes buffer
+    buf = io.BytesIO()
+    plt.savefig(buf, format='png')
+    plt.close()
+    buf.seek(0)
+
+    # Convert the image to a base64-encoded string
+    graph_data = base64.b64encode(buf.getvalue()).decode('utf-8')
     # Display the plot
-    plt.show()
-        
+    return jsonify({'graph': graph_data})  
 
 
 
