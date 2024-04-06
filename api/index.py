@@ -78,6 +78,7 @@ def get_content_image():
     oepnaimage = OpenAIImage()
     # add url to get image
     file_storage = request.files.get('image_path')
+    print("file_storage:", file_storage)
     # The line `print("CHUONG", image_path.stream.read())` is reading the content of the file uploaded
     # as part of the request and printing it along with the string "CHUONG". This is useful for
     # debugging purposes to see the content of the file being processed in the `get_content_image`
