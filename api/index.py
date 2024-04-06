@@ -2,11 +2,11 @@ from http.server import BaseHTTPRequestHandler
 import io
 from os.path import dirname, abspath, join
 import matplotlib
-matplotlib.use('Agg')  # Use a non-interactive backend for Matplotlib
+# matplotlib.use('Agg')  # Use a non-interactive backend for Matplotlib
 import matplotlib.pyplot as plt
 import base64
 import certifi
-
+import numpy as np
 
 from api.OpenAIImage import OpenAIImage
 dir = dirname(abspath(__file__))
@@ -45,7 +45,7 @@ def get_user_mongo():
     users = db['users']
     user_id = data.get('user_id')
     print("XYY", user_id)
-    user = users.find_one({'user_id': user_id})
+    user = users.find_one({'    user_id': user_id})
     user['_id'] = str(user['_id'])
     # Insert the data into the new collection
     print("XB", user)
@@ -166,6 +166,37 @@ def get_user_graph():
         return jsonify({'graph': graph_data})
     else:
         return jsonify({'error': f'User with ID {user_id} not found.'}), 404
+    
+    
+@app.route('/api/anomaly/graph', methods=['POST'])
+def get_user_anomaly_graph():
+    print(request.json)
+    # Array of values
+    data = [1.44, 1.27, 1.45, 1.21, 1.38, 1.16, 1.16, 1.06, 1.08, 1.07, 1.09, 1.42, 1.26, 1.02, 1.15, 1.09, 1.02, 1.1, 1.03, 1.29, 1.31, 1.32, 1.4, 1.41, 1.35, 1.11, 1.01, 1.09, 1.47, 1.15, 1.28, 1.47, 1.06, 1.28, 1.43, 1.43, 1.24, 1.29, 2.91, 2.81, 3.3, 2.85, 2.94]
+
+    # X-axis ticks and labels
+    x_ticks = np.arange(0, len(data) * 0.5, 0.5)
+    x_labels = ['12 AM', '', '', '', '', '', '', '', '', '', '5 AM', '', '', '', '', '', '', '', '', '', '10 AM', '', '', '', '', '', '', '', '', '', '3 PM', '', '', '', '', '', '', '', '', '', '8 PM', '', '']
+# Color for the last 4 bars
+    last_4_bars_color = 'red'
+
+    # List of colors for all the bars
+    colors = ['#c9f4eb'] * (len(data) - 5) + [last_4_bars_color] * 5
+
+    # Plotting the bar plot
+    plt.bar(x_ticks, data, color=colors, alpha=0.76, width=0.4)
+
+    # Setting the title and labels
+    plt.title('Energy Consumption Bar Plot', fontsize=18)
+    plt.xlabel('Half Hourly', fontsize=16)
+    plt.ylabel('kWh', fontsize=16)
+
+    # Setting the X-axis ticks and labels
+    plt.xticks(x_ticks, x_labels, rotation=270, fontsize=7)
+    plt.ylim(0, max(data))
+    # Display the plot
+    plt.show()
+        
 
 
 
