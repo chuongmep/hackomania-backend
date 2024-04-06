@@ -5,6 +5,7 @@ import matplotlib
 # matplotlib.use('Agg')  # Use a non-interactive backend for Matplotlib
 import matplotlib.pyplot as plt
 import base64
+import certifi
 
 
 from api.OpenAIImage import OpenAIImage
@@ -19,7 +20,7 @@ app = Flask(__name__)
 
 # Connect to MongoDB
 mongo_uri = "mongodb+srv://chuongpqvn:YIxK7JNeOdB2TvHz@hack-omania.igeosd7.mongodb.net/?retryWrites=true&w=majority&appName=hack-omania"
-client = MongoClient(mongo_uri)
+client = MongoClient(mongo_uri , tlsCAFile=certifi.where())
 db = client.your_database_name
 
 @app.route('/api/create', methods=['POST'])
@@ -34,6 +35,22 @@ def create_api():
     print("XB", collection.insert_one(data))
 
     return jsonify(data), 201
+
+
+@app.route('/api/user', methods=['GET'])
+def get_user_mongo():
+    # Get the schema and data from the request
+    data = request.json
+    print("ABCD", request.json)
+    users = db['users']
+    user_id = data.get('user_id')
+    print("XYY", user_id)
+    user = users.find_one({'user_id': user_id})
+    user['_id'] = str(user['_id'])
+    # Insert the data into the new collection
+    print("XB", user)
+
+    return jsonify(user), 200
 
 
 @app.route('/api/add-device', methods=['POST'])

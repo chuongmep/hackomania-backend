@@ -38,6 +38,10 @@
     {
       "src": "/api/graph",
       "dest": "api/index.py"
+    },
+    {
+      "src": "/api/user",
+      "dest": "api/index.py"
     }
   
   ]
