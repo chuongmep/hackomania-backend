@@ -63,7 +63,6 @@ def get_content_image():
     image_path = request.json.get('image_path')
     category = request.json.get('category')
     response = oepnaimage.post_content_from_image(image_path, category)
-    response.headers['Content-Type'] = 'application/json'
     return response
 # get content image from bytes 
 @app.route("/api/get-content-image-bytes", methods=['POST'])

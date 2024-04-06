@@ -5,11 +5,16 @@
   },
   {
       "category": "Projector",
-      "text": "I got a gift from my parents and it is no longer working. I need to get it fixed but I do not know the brand of this projector. Give me the device info of this image of my projector, the image is of a projector. I need to get the model and company of the projector, and other device info in the form of JSON format. I do not need any text above or below the output. Only give me output in JSON format. Also add the energy consumption from the model that you deduced. If you are not sure, give me a general ballpark figure as to how much energy this device could be using."
+      "text": "I got a gift from my parents and it is no longer working. I need to get it fixed but I do not know the brand of this projector. Give me the device info of this image of my projector, the image is of a projector. I need to get the model and company of the projector, and other device info in the form of JSON format. I do not need any text above or below the output. Only give me output in JSON format. Also add the energy consumption from the model that you deduced. If you are not sure, give me a general a specific figure and not a range as to how much energy this device could be using. The output JSON should have following fields, Brand(string.), Model(string), EnergyConsumption(float). The data should be in exact format."
   },
   {
     "category": "Air Conditioning",
     "text": "I got a gift from my parents and it is no longer working. I need to get it fixed but I do not know the brand of this Air Conditioning. Give me the device info of this image of my Air Conditioning, the image is of a Air Conditioning. I need to get the model and company of the Air Conditioning, and other device info in the form of JSON format. I do not need any text above or below the output. Only give me output in JSON format. Also add the energy consumption from the model that you deduced. If you are not sure, give me a general ballpark figure as to how much energy this device could be using."
   }
+  ,{
+    "category": "Laptop",
+    "text": "I got a gift from my parents and it is no longer working. I need to get it fixed but I do not know the brand of this laptop. Give me the device info of this image of my laptop, the image is of a laptop. I need to get the model and company of the laptop, and other device info in the form of JSON format. I do not need any text above or below the output. Only give me output in JSON format. Also add the energy consumption from the model that you deduced. If you are not sure, give me a general a specific figure and not a range as to how much energy this device could be using. The output JSON should have following fields, Brand(string.), Model(string), EnergyConsumption(float). The data should be in exact format."
+  }
 
 ]
+ 

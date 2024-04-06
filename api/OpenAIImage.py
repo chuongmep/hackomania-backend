@@ -1,22 +1,28 @@
 import base64
 import requests
 import json
+import os
 class OpenAIImage:
     def __init__(self):
         self.api_key = "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"
 
-    def encode_image(image_bytes):
-        return base64.b64encode(image_bytes).decode('utf-8')
+    @staticmethod
+    def encode_image(image_path):
+        with open(image_path, "rb") as image_file:
+            return base64.b64encode(image_file.read()).decode('utf-8')
+
     
+    @staticmethod
     def _is_file_exist(file_path):
         try:
             with open(file_path, 'r') as file:
                 return True
         except FileNotFoundError:
             return False
-    # Function to read JSON data from a file
+
+    @staticmethod
     def read_json(file_path):
-        flag = self._is_file_exist(file_path)
+        flag = OpenAIImage._is_file_exist(file_path)
         if not flag:
             print(f"File '{file_path}' does not exist.")
             return None
@@ -24,46 +30,49 @@ class OpenAIImage:
             data = json.load(file)
         return data
 
-    # Function to retrieve text based on category
+    @staticmethod
     def get_text_by_category(prompt_data, category):
         for item in prompt_data:
             if item["category"] == category:
                 return item["text"]
         return None
-    def post_content_from_image(image_path,category):
-        base64_image = self.encode_image(image_path)
-        return self.post_content_from_bytes(base64_image,category)
+
+    def post_content_from_image(self, image_path, category):
+        base64_image = OpenAIImage.encode_image(image_path)
+        return self.post_content_from_bytes(base64_image, category)
         
-    def post_content_from_bytes(base64_image,category):
-        prompt_path = "../data/api/prompt.json"
-        prompt_data = self.read_json(prompt_path)
-        selected_text = self.get_text_by_category(prompt_data, category)
+    def post_content_from_bytes(self, base64_image, category):
+        # fix prompt_path from api/data/promt.json
+        # get folder data same directory with  api 
+        prompt_path = os.path.join(os.path.dirname(__file__),"..", 'data', 'prompt.json')
+        print(prompt_path)
+        prompt_data = OpenAIImage.read_json(prompt_path)
+        selected_text = OpenAIImage.get_text_by_category(prompt_data, category)
         headers = {
-        "Content-Type": "application/json",
-        "Authorization": f"Bearer {self.api_key}"
+            "Content-Type": "application/json",
+            "Authorization": f"Bearer {self.api_key}"
         }
         payload = {
-        "model": "gpt-4-vision-preview",
-        "messages": [
-            {
-            "role": "user",
-            "content": [
+            "model": "gpt-4-vision-preview",
+            "messages": [
                 {
-                "type": "text",
-                "text": f"{selected_text}"
-                },
-                {
-                "type": "image_url",
-                "image_url": {
-                    "url": f"data:image/jpeg;base64,{base64_image}"
+                    "role": "user",
+                    "content": [
+                        {
+                            "type": "text",
+                            "text": f"{selected_text}"
+                        },
+                        {
+                            "type": "image_url",
+                            "image_url": {
+                                "url": f"data:image/jpeg;base64,{base64_image}"
+                            }
+                        }
+                    ]
                 }
-                }
-            ]
-            }
-        ],
-        "max_tokens": 300
+            ],
+            "max_tokens": 300
         }
         response = requests.post("https://api.openai.com/v1/chat/completions", headers=headers, json=payload)
         return response.json()['choices'][0]['message']['content']
-    
 
