@@ -70,7 +70,13 @@ def get_content_image():
     stream = file_storage.stream.read()
     base64_image = base64.b64encode(stream)
     response = oepnaimage.post_content_from_bytes(base64_image, category)
-    return response
+    start = response.find('json') + 5
+    end = response.rfind('}') + 1
+    json_data = response[start:end]
+
+    # Parse the JSON data
+    data = json.loads(json_data)
+    return data
 # get content image from bytes 
 @app.route("/api/get-content-image-bytes", methods=['POST'])
 def get_content_image_by_bytes():
