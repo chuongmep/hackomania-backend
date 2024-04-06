@@ -61,7 +61,7 @@ def add_device():
     user_id = request.json.get('user_id')
     # if user_if not found, create new user
     if not users.find_one({'user_id': user_id}):
-        users.insert_one({'user_id': user_id, 'devices': []})
+        users.insert_one(request.json)
     print("XYY", user_id)
     user = users.find_one({'user_id': user_id})
     _id = user.get('_id')
