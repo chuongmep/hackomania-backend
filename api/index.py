@@ -63,18 +63,11 @@ def get_user():
 @app.route('/api/green-energy-fact', methods=['GET'])
 def get_green_energy_facts():
     facts = [
-        {
-            "fact": "Wind power is one of the fastest-growing renewable energy sources, with global installed capacity increasing from 7.5 gigawatts (GW) in 1997 to over 650 GW in 2019.",
-            "source": "International Energy Agency"
-        },
-        {
-            "fact": "Solar energy is the fastest-growing renewable energy source, with the global installed capacity increasing from just 7 GW in 2007 to over 580 GW in 2019.",
-            "source": "International Renewable Energy Agency"
-        },
-        {
-            "fact": "Renewable energy sources, such as wind, solar, and hydropower, accounted for around 26% of the global electricity generation in 2019.",
-            "source": "International Energy Agency"
-        }
+        "In 2019, Singapore's total primary energy consumption was around 16 million tonnes of oil equivalent (Mtoe), which represented a 2.5% increase from 2018.",
+        "The main sources of energy in Singapore's primary energy mix in 2019 were natural gas (95.2%) and others (4.8%), which included oil, coal, and renewable energy sources.",
+        "Singapore has been actively pursuing renewable energy sources, particularly solar power, to diversify its energy mix. As of 2019, the country had around 350 megawatts (MW) of installed solar photovoltaic capacity.",
+        "The building and transportation sectors are the largest energy consumers in Singapore, accounting for around 40% and 35% of total energy consumption respectively in 2019.",
+        "Singapore has set a target to reduce its emissions intensity (emissions per unit of GDP) by 36% from 2005 levels by 2030, and to stabilize its greenhouse gas emissions with the aim of peaking around 2030."
     ]
     response = make_response(jsonify(facts))
     response.headers['Content-Type'] = 'application/json'
