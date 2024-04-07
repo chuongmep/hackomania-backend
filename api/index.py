@@ -91,7 +91,27 @@ def add_device():
     response.headers['Content-Type'] = 'application/json'
 
     return response
-
+@app.route('/api/delete-device', methods=['POST'])
+def delete_projector():
+    # Get the schema and data from the request
+    data = request.json
+    print("ABCD", request.json)
+    users = db['users']
+    user_id = data.get('user_id')
+    print("XYY", user_id)
+    user = users.find_one({'user_id': user_id})
+    devices = user.get('devices')
+    device_name = "Projector"
+    # delete device with name "Projector"
+    for device in devices:
+        if device['name'] == device_name:
+            devices.remove(device)
+    user['devices'] = devices
+    _id = user.get('_id')
+    users.update_one({'_id': _id}, {'$set': user})
+    user['_id'] = str(user['_id'])
+    print("XAA", user)
+    return jsonify(user), 200
 @app.route("/api/get-content-image", methods=['POST'])
 def get_content_image():
     oepnaimage = OpenAIImage()
