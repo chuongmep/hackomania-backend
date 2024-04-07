@@ -67,14 +67,19 @@ def add_device():
     _id = user.get('_id')
     user['number_of_devices'] = 0
     user['daily_projected_bill'] = 0.0
+    # check if any device is new on data_list not in user['devices'], add it to user['devices']
+    for data in data_list:
+        if data not in user['devices']:
+            print("Data Not in user['devices']", data)
+            user['devices'].append(data)
     for device in user['devices']:
         for data in data_list:
-            # if device['name'] == data['name'] and data['status'] == True:
-            device['kwh'] = data['kwh']
-            device['status'] = True
-            device['hours'] = data['hours']
-            user['number_of_devices'] += 1
-            user['daily_projected_bill'] += user['cost_per_kwh'] * data['hours'] * data['kwh']
+            if device['name'] == data['name'] and data['status'] == True:
+                device['kwh'] = data['kwh']
+                device['status'] = True
+                device['hours'] = data['hours']
+                user['number_of_devices'] += 1
+                user['daily_projected_bill'] += user['cost_per_kwh'] * data['hours'] * data['kwh']
     users.update_one({'_id': _id}, {'$set': user})
     user['_id'] = str(user['_id'])
     for device in user['devices']:
