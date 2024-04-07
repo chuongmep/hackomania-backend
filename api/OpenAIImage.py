@@ -4,7 +4,7 @@ import json
 import os
 class OpenAIImage:
     def __init__(self):
-        self.api_key = "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"
+        self.api_key = os.environ.get("OPEN_API_KEY")
 
     @staticmethod
     def encode_image(image):

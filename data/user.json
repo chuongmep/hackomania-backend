@@ -5,7 +5,7 @@
     "age": 30,
     "gender": "male",
     "location": {
-      "city": "New York",
+      "city": "Ncew York",
       "country": "USA"
     },
     "interests": ["hiking", "reading", "traveling"],

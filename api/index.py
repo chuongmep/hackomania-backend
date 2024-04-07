@@ -35,8 +35,6 @@ def create_api():
     print("XB", collection.insert_one(data))
 
     return jsonify(data), 201
-
-
 @app.route('/api/user', methods=['GET'])
 def get_user_mongo():
     # Get the schema and data from the request
