@@ -14,6 +14,14 @@ Problem Statement:
 Older devices may be consuming more energy, contributing to inefficiency.
 Users do not recognize the importance of purchasing energy-efficient, environmentally friendly devices.
 
+## Members
+
+- Chuong Ho 
+- DongYoung Lim
+- Wu Yifei
+- hubham Matta
+- Pingasari T.
+
 ## API 
 
 -[https://python-hello-world-three-wine.vercel.app/api](https://python-hello-world-three-wine.vercel.app/api)
@@ -38,3 +46,5 @@ Users do not recognize the importance of purchasing energy-efficient, environmen
 - https://www.mongodb.com/docs/cloud-manager/tutorial/connect-to-mongodb/
 - https://mobbin.com/search/ios/screens?filter=screenPatterns.Quiz
 - https://platform.openai.com/docs/guides/vision
+
+
