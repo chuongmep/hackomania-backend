@@ -1,30 +1,34 @@
-# Hackomani - GreenHome Team 
+# green-home-hackmania
+GreenHome - Hackmania 2024
 
-## Description
+Welcome to Green Home, an innovative project designed to help residents optimize their energy usage through AI-powered recommendations and appliance usage data. Developed during the Hackomani-2024 event by the GreenHomeTeam, this project aims to address the common challenge of reducing home energy bills and fostering more efficient energy consumption habits.
 
-GreenHome helps residents optimize energy consumption through smart form, insightful dashboard, and personalized guidance
+<p float="left">
+  <img src="https://github.com/shubhammatta/green-home-hackmania/blob/main/ad1.png" width="150" />
+  <img src="https://github.com/shubhammatta/green-home-hackmania/blob/main/ad2.png" width="150" /> 
+  <img src="https://github.com/shubhammatta/green-home-hackmania/blob/main/ad3.png" width="150" />
+  <img src="https://github.com/shubhammatta/green-home-hackmania/blob/main/ad4.png" width="150" />
+  <img src="https://github.com/shubhammatta/green-home-hackmania/blob/main/ad5.png" width="150" />
+</p>
 
-Problem Statement:
+## Team Members
 
-- User doesn’t know how to optimize their energy consumption per device basis - > Users do not know the energy consumption from their device 
+- **Chuong Ho** - Backend Engineer - chuongpqvn@gmail.com
+- **Pingasari T.** - Product Owner - pingasari@gmail.com
+- **Wu Yifei** - Business Analyst - wyifei51@gmail.com
+- **Shubham Matta** - Backend Engineer - shubhammatta1@gmail.com
+- **DongYoung Lim** - Frontend Engineer - limdongyoung@naver.com
 
-- Users lack visibility into the overall status in their household.
+## Project Overview
 
-- User lack of knowledge on the life span of the device they purchase. 
-Older devices may be consuming more energy, contributing to inefficiency.
-Users do not recognize the importance of purchasing energy-efficient, environmentally friendly devices.
+Residents often struggle with high energy bills due to inefficient appliance use and habits. Green Home offers a no-sensor solution, purely software-based, to provide cheap, easy-to-maintain, and easy-to-install alternatives to traditional energy consumption optimization methods.
 
-## Members
+### Key Features
 
-- Chuong Ho 
-- DongYoung Lim
-- Wu Yifei
-- hubham Matta
-- Pingasari T.
-
-## API 
-
--[https://python-hello-world-three-wine.vercel.app/api](https://python-hello-world-three-wine.vercel.app/api)
+- **Smart AI Scanner:** Effortlessly scan appliances to gather usage data.
+- **AI-powered Dashboard:** Gain insights into your energy consumption patterns.
+- **Tailored Recommendations:** Receive personalized tips to improve energy efficiency.
+- **Cost-effective:** A pure software solution that doesn't require expensive IoT home sensors.
 
 ## Application 
 
