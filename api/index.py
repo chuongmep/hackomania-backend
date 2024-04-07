@@ -56,8 +56,6 @@ def get_user_mongo():
 @app.route('/api/add-device', methods=['POST'])
 def add_device():
     data_list = request.json.get('devices')
-    if data_list is None:
-        return jsonify({'error': 'No devices found in the request.'}), 400
     print("ABCD", request.json)
     users = db['users']
     user_id = request.json.get('user_id')
@@ -71,17 +69,17 @@ def add_device():
     user['daily_projected_bill'] = 0.0
     for device in user['devices']:
         for data in data_list:
-            if device['name'] == data['name'] and data['status'] == True:
-                device['kwh'] = data['kwh']
-                device['status'] = True
-                device['hours'] = data['hours']
-                user['number_of_devices'] += 1
-                user['daily_projected_bill'] += user['cost_per_kwh'] * data['hours'] * data['kwh']
+            # if device['name'] == data['name'] and data['status'] == True:
+            device['kwh'] = data['kwh']
+            device['status'] = True
+            device['hours'] = data['hours']
+            user['number_of_devices'] += 1
+            user['daily_projected_bill'] += user['cost_per_kwh'] * data['hours'] * data['kwh']
     users.update_one({'_id': _id}, {'$set': user})
     user['_id'] = str(user['_id'])
     for device in user['devices']:
         if device['name'] == data['name']:
-            device['kwh'] = data
+            device['kwh'] = data['kwh']
     print("XAA", user)
 
     response = make_response(user)
