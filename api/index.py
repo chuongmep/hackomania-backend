@@ -19,7 +19,7 @@ import json
 app = Flask(__name__)
 
 # Connect to MongoDB
-mongo_uri = "mongodb+srv://chuongpqvn:YIxK7JNeOdB2TvHz@hack-omania.igeosd7.mongodb.net/?retryWrites=true&w=majority&appName=hack-omania"
+mongo_uri = os.environ.get('MONGODB_URL')
 client = MongoClient(mongo_uri , tlsCAFile=certifi.where())
 db = client.your_database_name
 
